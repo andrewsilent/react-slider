@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import SlideDescription from "../SlideDescription";
 import styles from "./Slide.module.css";
-
+import PropTypes from "prop-types";
 class Slide extends Component {
   constructor(props) {
     super(props);
@@ -24,5 +24,11 @@ class Slide extends Component {
     );
   }
 }
+
+Slide.propTypes = {
+  src: PropTypes.string.isRequired,
+  description: PropTypes.object.isRequired,
+  currentSlide: PropTypes.number.isRequired,
+};
 
 export default Slide;

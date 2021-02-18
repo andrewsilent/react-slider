@@ -1,0 +1,82 @@
+.controls {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  height: 0;
+  z-index: 100;
+}
+
+.controlsInner {
+  position: relative;
+  padding-bottom: 56%;
+}
+
+.control,
+.fullscreen,
+.play {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  z-index: 100;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  opacity: 0.5;
+  transition: margin 0.75s ease 0s;
+}
+
+.control {
+  height: 40px;
+  width: 40px;
+  left: 15px;
+  top: 48%;
+  border-radius: 50%;
+  margin: 0 0 0 -75px;
+}
+
+.control::after,
+.control + .control::after {
+  display: block;
+  transform: scaleY(2);
+}
+
+.control::after {
+  content: "<";
+}
+
+.control + .control {
+  content: ">";
+  right: 15px;
+  left: unset;
+  margin: 0 -75px 0 0;
+}
+
+.control + .control::after {
+  content: ">";
+}
+
+.fullscreen {
+  right: 15px;
+  bottom: 15px;
+  height: 35px;
+  border-radius: 5px;
+  margin: 0 -85px -50px 0;
+}
+
+.play {
+  left: 15px;
+  bottom: 15px;
+  height: 35px;
+  border-radius: 5px;
+  margin: 0 0 -50px -55px;
+}
+
+.controls:hover .control,
+.controls:hover .fullscreen,
+.controls:hover .play {
+  opacity: 1;
+  margin: 0;
+  transition: margin 0.75s ease 0s;
+}

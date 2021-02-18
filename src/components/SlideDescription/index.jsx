@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 class SlideDescription extends Component {
   constructor(props) {
@@ -16,5 +17,9 @@ class SlideDescription extends Component {
     );
   }
 }
+
+SlideDescription.propTypes = {
+  description: PropTypes.object.isRequired,
+};
 
 export default SlideDescription;

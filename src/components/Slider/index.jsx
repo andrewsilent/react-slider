@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Slide from "../Slide";
+import Controls from "../Controls";
 import styles from "./Slider.module.css";
 
 class Slider extends Component {
@@ -13,19 +14,22 @@ class Slider extends Component {
       ],
       descriptions: [
         {
-          "Some title #0":
-            "Some description #0 Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias est labore optio quos provident ex veritatis facilis sapiente dicta assumenda.",
+          "Some awesome title #1":
+            "Some description #1 Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias est labore optio quos provident ex veritatis facilis sapiente dicta assumenda.",
         },
         {
-          "Some title #1":
-            "Some description #1 Quibusdam nobis veniam ex labore! Incidunt facilis blanditiis dolor distinctio. Odio quasi inventore culpa fugit accusamus vitae provident voluptas molestias.",
+          "Some awesome title #2":
+            "Some description #2 Quibusdam nobis veniam ex labore! Incidunt facilis blanditiis dolor distinctio. Odio quasi inventore culpa fugit accusamus vitae provident voluptas molestias.",
         },
         {
-          "Some title #2":
-            "Some description #2 Reiciendis, quae deserunt eaque qui quasi explicabo recusandae nihil labore hic repudiandae sit quaerat quam officia! Nihil veritatis ipsum aliquid.",
+          "Some awesome title #3":
+            "Some description #3 Reiciendis, quae deserunt eaque qui quasi explicabo recusandae nihil labore hic repudiandae sit quaerat quam officia! Nihil veritatis ipsum aliquid.",
         },
       ],
       currentSlide: 0,
+      autoPlay: false,
+      timerId: 0,
+      delay: 1000,
     };
   }
 
@@ -43,23 +47,37 @@ class Slider extends Component {
     });
   };
 
+  fullscreen = () => {
+    document.getElementById("slides").requestFullscreen();
+  };
+
+  play = () => {
+    if (this.state.autoPlay) {
+      clearInterval(this.state.timerId);
+      this.setState({ autoPlay: !this.state.autoPlay });
+    } else {
+      const newTimerId = setInterval(() => {
+        this.nextSlide();
+      }, this.state.delay);
+      this.setState({
+        autoPlay: !this.state.autoPlay,
+        timerId: newTimerId,
+      });
+    }
+  };
+
   render() {
     const { currentSlide, slides, descriptions } = this.state;
     return (
       <main className={styles.container}>
-        <section className={styles.slider}>
-          <div className={styles.controls}>
-            <div className={styles.controlsInner}>
-              <button
-                className={styles.control}
-                onClick={this.prevSlide}
-              ></button>
-              <button
-                className={styles.control}
-                onClick={this.nextSlide}
-              ></button>
-            </div>
-          </div>
+        <section id="slides" className={styles.slider}>
+          <Controls
+            nextSlide={this.nextSlide}
+            prevSlide={this.prevSlide}
+            fullscreen={this.fullscreen}
+            autoPlay={this.state.autoPlay}
+            play={this.play}
+          />
           <div className={styles.slides}>
             {slides.map((e, i) => {
               return (
