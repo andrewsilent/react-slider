@@ -10,31 +10,74 @@ body {
   align-items: center;
 }
 
+.controls {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  height: 0;
+}
+
+.controlsInner {
+  position: relative;
+  padding-bottom: 56%;
+}
+
+.control {
+  background-color: rgba(255,255,255,0.2);
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  left: 15px;
+  top: 48%;
+  border-radius: 50%;
+  z-index: 100;
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+.control::after,
+.control + .control::after {
+  display: block;
+  transform: scaleY(2);
+}
+
+.control::after {
+  content: "<";
+}
+
+.control + .control {
+  content: ">";
+  right: 15px;
+  left: unset;
+}
+
+.control + .control::after {
+  content: ">";
+}
+
+.slides {
+  display: block;
+}
+
 .slider {
   min-width: 968px;
   max-width: 968px;
   min-height: 650px;
-  margin: 0 auto;
   position: relative;
-  display: flex;
-  justify-content: space-between;
 }
 
 .slide {
   position: absolute;
   opacity: 0;
+  transition: opacity 0.5s ease 0s;
 }
 
 .current {
   z-index: 10;
   opacity: 1;
-}
-
-.control {
-  position: relative;
-  z-index: 100;
-  cursor: pointer;
-  background-color: transparent;
-  border: none;
-  outline: none;
+  transition: opacity 0.5s ease 0s;
 }
