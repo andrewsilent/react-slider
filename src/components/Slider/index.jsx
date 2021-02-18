@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Slide from "../Slide";
+import styles from "./Slider.module.css";
 
 class Slider extends Component {
   constructor(props) {
@@ -19,21 +20,52 @@ class Slider extends Component {
     };
   }
 
+  nextSlide = () => {
+    this.setState({
+      currentSlide: (this.state.currentSlide + 1) % this.state.slides.length,
+    });
+  };
+
+  prevSlide = () => {
+    this.setState({
+      currentSlide:
+        (this.state.currentSlide - 1 + this.state.slides.length) %
+        this.state.slides.length,
+    });
+  };
+
   render() {
     const { currentSlide, slides, descriptions } = this.state;
+    console.log(styles.current);
     return (
-      <section>
-        {slides.map((e, i) => {
-          return (
-            <Slide
-              key={e}
-              src={slides[i]}
-              description={descriptions[i]}
-              className={currentSlide === i ? "current slide" : "slide"}
-            />
-          );
-        })}
-      </section>
+      <main className={styles.container}>
+        <section className={styles.slider}>
+          <button className={styles.control} onClick={this.prevSlide}>
+            prev
+          </button>
+          <button className={styles.control} onClick={this.nextSlide}>
+            next
+          </button>
+          {slides.map((e, i) => {
+            return (
+              <div
+                key={e}
+                className={
+                  currentSlide === i
+                    ? `${styles.current} ${styles.slide}`
+                    : `${styles.slide}`
+                }
+              >
+                <Slide
+                  src={slides[i]}
+                  currentSlide={currentSlide}
+                  description={descriptions[i]}
+                />
+              </div>
+            );
+          })}
+        </section>
+      </main>
     );
   }
 }

@@ -1,0 +1,40 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slider {
+  min-width: 968px;
+  max-width: 968px;
+  min-height: 650px;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+}
+
+.slide {
+  position: absolute;
+  opacity: 0;
+}
+
+.current {
+  z-index: 10;
+  opacity: 1;
+}
+
+.control {
+  position: relative;
+  z-index: 100;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
