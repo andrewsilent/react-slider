@@ -1,6 +1,6 @@
 import React, { Component } from "react";
+import styles from "./SlideDescription.module.scss";
 import PropTypes from "prop-types";
-import styles from "./SlideDescription.module.css";
 
 class SlideDescription extends Component {
   constructor(props) {

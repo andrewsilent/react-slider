@@ -1,0 +1,113 @@
+.controlsWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 2px;
+  bottom: 2px;
+  height: 0;
+  z-index: 100;
+}
+
+.controlsInner {
+  position: relative;
+  padding-bottom: 56%;
+}
+
+.slide,
+.fullscreen,
+.play,
+.speed {
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  position: absolute;
+  z-index: 100;
+  opacity: 0.5;
+  border: none;
+  outline: none;
+  transition: margin 0.75s ease 0s;
+}
+
+.fullscreen,
+.play,
+.speed {
+  bottom: 15px;
+  height: 35px;
+  border-radius: 5px;
+}
+
+.slide:hover,
+.fullscreen:hover,
+.play:hover,
+.speed:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.controlsWrapper:hover .slide,
+.controlsWrapper:hover .fullscreen,
+.controlsWrapper:hover .play,
+.controlsWrapper:hover .speed {
+  opacity: 1;
+  margin: 0;
+  transition: margin 0.75s ease 0s;
+}
+
+.slide {
+  height: 50px;
+  width: 50px;
+  left: 15px;
+  top: 48%;
+  border-radius: 50%;
+  margin: 0 0 0 -75px;
+}
+
+.slide + .slide {
+  right: 15px;
+  left: unset;
+  margin: 0 -75px 0 0;
+}
+
+.slide::after,
+.slide + .slide::after {
+  display: block;
+  transform: scaleY(2);
+}
+
+.slide::after {
+  content: "<";
+}
+
+.slide + .slide::after {
+  content: ">";
+}
+
+.fullscreen {
+  right: 15px;
+  margin: 0 -90px -60px 0;
+}
+
+.fullscreen::after {
+  content: "Fullscreen";
+}
+
+.play {
+  left: 15px;
+  margin: 0 0 -60px -55px;
+}
+
+.speed {
+  left: 57px;
+  margin: 0 0 -60px -55px;
+}
+
+.speed + .speed {
+  left: 87px;
+}
+
+.speed::after {
+  content: "<<";
+}
+
+.speed + .speed::after {
+  content: ">>";
+}

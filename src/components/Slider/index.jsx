@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import Slide from "../Slide";
 import Controls from "../Controls";
-import styles from "./Slider.module.css";
-import "../../common/styles/styles.css";
+import styles from "./Slider.module.scss";
+import "../../common/styles/styles.scss";
 
 class Slider extends Component {
   constructor(props) {

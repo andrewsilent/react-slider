@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import styles from "./Controls.module.css";
+import styles from "./Controls.module.scss";
 import PropTypes from "prop-types";
 
 class Controls extends Component {
@@ -19,8 +19,8 @@ class Controls extends Component {
     return (
       <div className={styles.controlsWrapper}>
         <div className={styles.controlsInner}>
-          <button className={styles.control} onClick={prevSlide}></button>
-          <button className={styles.control} onClick={nextSlide}></button>
+          <button className={styles.slide} onClick={prevSlide}></button>
+          <button className={styles.slide} onClick={nextSlide}></button>
           <button className={styles.fullscreen} onClick={fullscreen}></button>
           <button className={styles.play} onClick={play}>{autoPlay ? "Stop" : "Play"}</button>
           {autoPlay
