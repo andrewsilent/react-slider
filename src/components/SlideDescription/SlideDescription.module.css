@@ -1,0 +1,13 @@
+.description {
+  display: block;
+}
+
+.title {
+  font: 600 1.5rem/1.25 Arial, sans-serif;
+  padding-top: 1.5rem;
+}
+
+.text {
+  font: 400 1.05rem/1.25 Arial, sans-serif;
+  padding-top: 1rem;
+}

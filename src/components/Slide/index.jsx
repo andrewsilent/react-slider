@@ -11,11 +11,11 @@ class Slide extends Component {
     const { currentSlide, src, description } = this.props;
     return (
       <>
-        <img
-          src={src}
-          alt={`awesome image #${currentSlide}`}
-          className={styles.slideImage}
-        />
+        <div className={styles.slideImageWrapper}>
+          <div className={styles.slideImageInner}>
+            <img src={src} alt={`awesome image #${currentSlide}`} className={styles.slideImage}/>
+          </div>
+        </div>
         <SlideDescription
           currentSlide={currentSlide}
           description={description}
@@ -24,6 +24,10 @@ class Slide extends Component {
     );
   }
 }
+
+Slide.defaultProps = {
+  currentSlide: 0,
+};
 
 Slide.propTypes = {
   src: PropTypes.string.isRequired,

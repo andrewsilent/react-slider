@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Slide from "../Slide";
 import Controls from "../Controls";
 import styles from "./Slider.module.css";
+import "../../common/styles/styles.css";
 
 class Slider extends Component {
   constructor(props) {
@@ -48,7 +49,10 @@ class Slider extends Component {
   };
 
   fullscreen = () => {
-    document.getElementById("slides").requestFullscreen();
+    const slider = document.getElementById("slider");
+    document.fullscreenElement
+      ? document.exitFullscreen()
+      : slider.requestFullscreen();
   };
 
   play = () => {
@@ -66,22 +70,34 @@ class Slider extends Component {
     }
   };
 
+  changeSpeed = (speed) => {
+    clearInterval(this.state.timerId);
+    const newTimerId = setInterval(() => {
+      this.nextSlide();
+    }, this.state.delay + speed);
+    this.setState({
+      delay: this.state.delay + speed,
+      timerId: newTimerId,
+    });
+  };
+
   render() {
     const { currentSlide, slides, descriptions } = this.state;
     return (
-      <main className={styles.container}>
-        <section id="slides" className={styles.slider}>
+      <section className={styles.container}>
+        <div id="slider" className={styles.slider}>
           <Controls
             nextSlide={this.nextSlide}
             prevSlide={this.prevSlide}
             fullscreen={this.fullscreen}
             autoPlay={this.state.autoPlay}
             play={this.play}
+            changeSpeed={this.changeSpeed}
           />
-          <div className={styles.slides}>
+          <div className={styles.slidesWrapper}>
             {slides.map((e, i) => {
               return (
-                <div
+                <article
                   key={e}
                   className={
                     currentSlide === i
@@ -94,12 +110,12 @@ class Slider extends Component {
                     currentSlide={currentSlide}
                     description={descriptions[i]}
                   />
-                </div>
+                </article>
               );
             })}
           </div>
-        </section>
-      </main>
+        </div>
+      </section>
     );
   }
 }

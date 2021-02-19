@@ -1,9 +1,9 @@
-.controls {
+.controlsWrapper {
   position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
+  left: 2px;
+  right: 2px;
+  top: 2px;
+  bottom: 2px;
   height: 0;
   z-index: 100;
 }
@@ -15,9 +15,10 @@
 
 .control,
 .fullscreen,
-.play {
+.play,
+.speed {
   position: absolute;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.1);
   color: #fff;
   z-index: 100;
   cursor: pointer;
@@ -28,8 +29,8 @@
 }
 
 .control {
-  height: 40px;
-  width: 40px;
+  height: 50px;
+  width: 50px;
   left: 15px;
   top: 48%;
   border-radius: 50%;
@@ -47,7 +48,6 @@
 }
 
 .control + .control {
-  content: ">";
   right: 15px;
   left: unset;
   margin: 0 -75px 0 0;
@@ -62,7 +62,11 @@
   bottom: 15px;
   height: 35px;
   border-radius: 5px;
-  margin: 0 -85px -50px 0;
+  margin: 0 -90px -50px 0;
+}
+
+.fullscreen::after {
+  content: "Fullscreen";
 }
 
 .play {
@@ -73,10 +77,39 @@
   margin: 0 0 -50px -55px;
 }
 
-.controls:hover .control,
-.controls:hover .fullscreen,
-.controls:hover .play {
+.control:hover,
+.fullscreen:hover,
+.play:hover,
+.speed:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.controlsWrapper:hover .control,
+.controlsWrapper:hover .fullscreen,
+.controlsWrapper:hover .play,
+.controlsWrapper:hover .speed {
   opacity: 1;
   margin: 0;
   transition: margin 0.75s ease 0s;
+}
+
+.speed {
+  margin: 0 0 -50px -55px;
+  border-radius: 5px;
+  height: 35px;
+  bottom: 15px;
+  left: 57px;
+}
+
+.speed + .speed {
+  bottom: 15px;
+  left: 87px;
+}
+
+.speed::after {
+  content: "<<";
+}
+
+.speed + .speed::after {
+  content: ">>";
 }
