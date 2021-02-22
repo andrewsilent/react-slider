@@ -8,22 +8,24 @@ class Slider extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      slides: [
-        "https://wallpaperaccess.com/full/1219598.jpg",
-        "https://wallpapercave.com/wp/jo9mmpH.jpg",
-        "https://i.pinimg.com/originals/d8/25/b9/d825b96f6f6df5366e227f71679d04c7.jpg",
-      ],
-      descriptions: [
+      data: [
         {
-          "Some awesome title #1":
+          src: "https://wallpaperaccess.com/full/1219598.jpg",
+          title: "Some awesome title #1",
+          description:
             "Some description #1 Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias est labore optio quos provident ex veritatis facilis sapiente dicta assumenda.",
         },
         {
-          "Some awesome title #2":
+          src: "https://wallpapercave.com/wp/jo9mmpH.jpg",
+          title: "Some awesome title #2",
+          description:
             "Some description #2 Quibusdam nobis veniam ex labore! Incidunt facilis blanditiis dolor distinctio. Odio quasi inventore culpa fugit accusamus vitae provident voluptas molestias.",
         },
         {
-          "Some awesome title #3":
+          src:
+            "https://i.pinimg.com/originals/d8/25/b9/d825b96f6f6df5366e227f71679d04c7.jpg",
+          title: "Some awesome title #3",
+          description:
             "Some description #3 Reiciendis, quae deserunt eaque qui quasi explicabo recusandae nihil labore hic repudiandae sit quaerat quam officia! Nihil veritatis ipsum aliquid.",
         },
       ],
@@ -36,15 +38,15 @@ class Slider extends Component {
 
   nextSlide = () => {
     this.setState({
-      currentSlide: (this.state.currentSlide + 1) % this.state.slides.length,
+      currentSlide: (this.state.currentSlide + 1) % this.state.data.length,
     });
   };
 
   prevSlide = () => {
     this.setState({
       currentSlide:
-        (this.state.currentSlide - 1 + this.state.slides.length) %
-        this.state.slides.length,
+        (this.state.currentSlide - 1 + this.state.data.length) %
+        this.state.data.length,
     });
   };
 
@@ -82,7 +84,7 @@ class Slider extends Component {
   };
 
   render() {
-    const { currentSlide, slides, descriptions } = this.state;
+    const { currentSlide, data } = this.state;
     return (
       <section className={styles.container}>
         <div id="slider" className={styles.slider}>
@@ -95,10 +97,10 @@ class Slider extends Component {
             changeSpeed={this.changeSpeed}
           />
           <div className={styles.slidesWrapper}>
-            {slides.map((e, i) => {
+            {data.map((e, i) => {
               return (
                 <article
-                  key={e}
+                key={`article-${i}`}
                   className={
                     currentSlide === i
                       ? `${styles.current} ${styles.slide}`
@@ -106,9 +108,11 @@ class Slider extends Component {
                   }
                 >
                   <Slide
-                    src={slides[i]}
+                    key={`slide-${i}`}
+                    src={data[i].src}
+                    title={data[i].title}
+                    description={data[i].description}
                     currentSlide={currentSlide}
-                    description={descriptions[i]}
                   />
                 </article>
               );

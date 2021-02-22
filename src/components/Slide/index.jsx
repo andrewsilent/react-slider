@@ -8,7 +8,7 @@ class Slide extends Component {
   }
 
   render() {
-    const { currentSlide, src, description } = this.props;
+    const { currentSlide, src, title, description } = this.props;
     return (
       <>
         <div className={styles.slideImageWrapper}>
@@ -18,6 +18,7 @@ class Slide extends Component {
         </div>
         <SlideDescription
           currentSlide={currentSlide}
+          title={title}
           description={description}
         />
       </>
@@ -31,7 +32,8 @@ Slide.defaultProps = {
 
 Slide.propTypes = {
   src: PropTypes.string.isRequired,
-  description: PropTypes.object.isRequired,
+  title: PropTypes.string,
+  description: PropTypes.string,
   currentSlide: PropTypes.number.isRequired,
 };
 

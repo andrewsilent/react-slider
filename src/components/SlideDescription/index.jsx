@@ -8,23 +8,24 @@ class SlideDescription extends Component {
   }
 
   render() {
-    const { description } = this.props;
-    const [[title, text]] = Object.entries(description);
+    const { title, description } = this.props;
     return (
       <div className={styles.description}>
         <h2 className={styles.title}>{title}</h2>
-        <p className={styles.text}>{text}</p>
+        <p className={styles.text}>{description}</p>
       </div>
     );
   }
 }
 
 SlideDescription.defaultProps = {
+  title: "Title",
   description: "Description",
 };
 
 SlideDescription.propTypes = {
-  description: PropTypes.object.isRequired,
+  title: PropTypes.string,
+  description: PropTypes.string,
 };
 
 export default SlideDescription;
